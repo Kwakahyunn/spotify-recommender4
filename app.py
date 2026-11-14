@@ -91,7 +91,7 @@ def get_virtual_recommendations(user_df, option, top_n=10):
             recommended_list.append(res_df)
             
         final_df = pd.concat(recommended_list, ignore_index=True)
-        result_df = final_df.drop_duplicates(subset=['곡명', '아티스트']).sort_values('오디오 거리').head(top_n)
+        result_df = final_df.drop_duplicates(subset=['곡명', '아티스트']).sort_values('오디오 거리').head(top_n).reset_index(drop=True)
 
     # 5. 군집화 (K-Means Clustering)
     elif option == "5":
@@ -119,7 +119,7 @@ def get_virtual_recommendations(user_df, option, top_n=10):
             
         if recommended_list:
             final_df = pd.concat(recommended_list, ignore_index=True)
-            result_df = final_df.drop_duplicates(subset=['곡명', '아티스트']).sort_values('오디오 거리').head(top_n)
+            result_df = final_df.drop_duplicates(subset=['곡명', '아티스트']).sort_values('오디오 거리').head(top_n).reset_index(drop=True)
         else:
             result_df = pd.DataFrame()
 
